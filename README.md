@@ -1,5 +1,5 @@
 # picture_edit
-a js script for mobile-side image editing
+a js plugin for mobile-side image editing
 
 ### 用原生js和canvas写的一个移动端图片编辑器
 
@@ -10,14 +10,15 @@ a js script for mobile-side image editing
 * saveFn 为点击保存时的回调函数
 
 #### 功能说明
-1、可以双指放大缩小图片
-2、可以在图片上进行涂鸦
-2、可以输入文字，输入文字后可以单指移动文字在图片上的位置
-3、可以撤回涂鸦的内容，不能撤回文字，文字编辑功能还未实现
+1. 可以双指放大缩小图片
+2. 可以在图片上进行涂鸦
+3. 可以输入文字，输入文字后可以单指移动文字在图片上的位置
+4. 可以撤回涂鸦的内容，不能撤回文字，文字编辑功能还未实现
 
-#### 构建自己的ped.js
-1、npm install
-2、npm run build
+#### 如何构建
 
-----
+```shell
+npm install & npm run build
+```
+
 欢迎star

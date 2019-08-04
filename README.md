@@ -2,6 +2,7 @@
 a js plugin for mobile-side image editing
 
 ### 用原生js和canvas写的一个移动端图片编辑器
+手机体验地址: http://114.67.68.76:8080/roc/imgDist/
 
 #### 使用方法
 1、引入dist文件夹下的ped.js

@@ -1,0 +1,143 @@
+.picture-edit-frame {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+
+  .body-content {
+    flex: 1;
+    background-color: #fff;
+    overflow: auto;
+    will-change: transform;
+  }
+
+  .cancel-btn {
+    position: fixed;
+    left: 15px;
+    top: 15px;
+    padding: 5px 13px;
+    background-color: white;
+    color: black;
+    z-index: 2;
+    border-radius: 3px;
+  }
+
+  .save-btn {
+    position: fixed;
+    right: 15px;
+    top: 15px;
+    padding: 5px 13px;
+    background-color: white;
+    color: white;
+    z-index: 2;
+    border-radius: 3px;
+  }
+
+  .cancel-test {
+    position: fixed;
+    right: 125px;
+    top: 15px;
+    padding: 5px 13px;
+    background-color: #67c23a;
+    color: white;
+    z-index: 2;
+    border-radius: 3px;
+  }
+
+  .canvas-box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  .footer-content {
+    background-color: #000;
+    height: 6em;
+    display: flex;
+    text-align: center;
+    color: #fff;
+    align-items: flex-start;
+  }
+
+  .operate-item {
+    display: block;
+    margin-top: 25px;
+    width: 10px;
+    flex: 1;
+  }
+
+  .operate-img {
+    width: 1.3em;
+    height: 1.3em;
+  }
+
+  .text-content {
+    position: absolute;
+    inset: 0px;
+    overflow: hidden;
+    z-index: 2;
+    display: none;
+    background-color: white;
+    opacity: 0.93;
+
+    .text-input {
+      min-height: 15%;
+      border-radius: 5px;
+      border: 2px solid rgb(99, 236, 161);
+      outline: none;
+      width: 96%;
+      box-sizing: border-box;
+      position: absolute;
+      top: 8%;
+      left: 2%;
+      right: 2%;
+      z-index: 2;
+      padding: 3px 5px;
+    }
+  }
+
+  .icon-rotate {
+    width: 18px;
+    position: absolute;
+    right: -5px;
+    bottom: -22px;
+  }
+
+  .icon-remove {
+    width: 18px;
+    position: absolute;
+    left: -5px;
+    bottom: -22px;
+  }
+
+  .icon-scale {
+    width: 18px;
+    position: absolute;
+    right: -5px;
+    top: -22px;
+  }
+
+  .operate-rotate {
+    position: absolute;
+    width: 20px;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .operate-scale {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    right: -8px;
+    top: -8px;
+    border-radius: 50%;
+    box-sizing: border-box;
+  }
+}

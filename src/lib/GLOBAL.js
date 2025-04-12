@@ -1,47 +1,76 @@
-export let PED_GlOBAL = {
+let PED_GlOBAL = {}
+
+function resetOptions(options = {}) {
+  PED_GlOBAL = {
+    initOptions: {
+      spaceLeft: 30,
+      spaceTop: 30,
+      fontSize: 14,
+      fontPaddingLeft: 3,
+      fontPaddingTop: 5,
+      fontRaduis: 5,
+      fontLineHeight: 1.2,
+      fontLineWidth: 5,
+      fontShadowBlur: 5,
+      maxScale: 2,
+      operatePaddingLeft: 28,
+      operatePaddingTop: 10,
+      fontColor: '#000000',
+      fontBgColor: '#ffffff',
+      fontFamily: "Arial",
+      textOperateColor: "#884cf3",
+      getDataURL: () => { },
+      outType: 'image/jpeg',
+      encoderOptions: 1,
+      ...options,
+    },
+    imgInstance: undefined,
     img: {
-        _width: 0,
-        _height: 0,
-        _WH: 0,
-        _HW: 0
+      width: 0,
+      height: 0,
+      WH: 0,
+      HW: 0
     },
     device: {
-        _width: 0,
-        _height: 0
+      width: 0,
+      height: 0,
+      dpr: 1,
     },
-    boxSize: {
-        _width: 0,
-        _height: 0
+    operateType: 0,
+    canvas: undefined,
+    canvasContext: undefined,
+    canvasInitCssSize: {
+      width: 0,
+      height: 0,
     },
-    operateType: 0, //0: 什么都不做  1:涂画  2:输入文字  3:撤回  4:清空
-    imgInstance: null,
-    canvas: {},
-    textBox: {},
-    textInput: {},
-    textOperateIndex: 0,
-    textIndex: 0,
-    inputArray:[],
-    inputDomArray: [],
-    canvasParentDom: null,
-    canvasGrandDom: null,
-    pictureEditBox: null,
-    canvasContext: {},
-    paintingArray: [],
+    canvasBox: undefined,
+    ped: undefined,
+    pedEdit: undefined,
+    editSize: {
+      width: 0,
+      height: 0
+    },
+    preScale: 1,
+    currentScale: 1,
+    scrollPercent: {
+      width: 1,
+      height: 1,
+    },
+    outerPosition: {
+      x: 0,
+      y: 0,
+    },
+    screenPosition: {
+      x: 0,
+      y: 0,
+    },
+    textContent: undefined,
+    textInput: undefined,
+    touchType: '',
+    textId: 2,
+    textsInfo: {},
+    steps: [],
+  }
 }
 
-export function changeOperate(type) {
-    PED_GlOBAL.operateType = type
-}
-
-export function setCanvas(canvas, textBox, textInput) {
-    PED_GlOBAL.canvas = canvas
-    PED_GlOBAL.canvasParentDom = canvas.parentElement
-    PED_GlOBAL.canvasGrandDom = canvas.parentElement.parentElement
-    PED_GlOBAL.canvasContext = canvas.getContext('2d')
-    PED_GlOBAL.textBox = textBox
-    PED_GlOBAL.pictureEditBox = textBox.parentElement
-    PED_GlOBAL.textInput = textInput
-
-    PED_GlOBAL.boxSize._height = PED_GlOBAL.canvasGrandDom.offsetHeight
-    PED_GlOBAL.boxSize._width = PED_GlOBAL.canvasGrandDom.offsetWidth
-}
+export { PED_GlOBAL as G, resetOptions }

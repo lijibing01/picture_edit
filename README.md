@@ -4,6 +4,9 @@ A mobile image editor written with native js and canvas
 # Source code
 https://github.com/lijibing01/picture_edit
 
+# Online Experience
+http://ai.xkcoin.cn/index.html
+
 # Usage
 1. yarn add picture_edit
 2. import * as PED from 'picture_edit'

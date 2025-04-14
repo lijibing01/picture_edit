@@ -4,6 +4,9 @@
 # 源码
 https://github.com/lijibing01/picture_edit
 
+# 在线体验
+http://ai.xkcoin.cn/index.html
+
 # 使用方法
 1. yarn add picture_edit
 2. import * as PED from 'picture_edit'

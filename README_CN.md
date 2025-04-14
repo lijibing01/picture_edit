@@ -1,8 +1,14 @@
 # 介绍
 用原生js和canvas写的一个移动端图片编辑器
 
+# 源码
+https://github.com/lijibing01/picture_edit
+
 # 使用方法
-1. 参考index.html引入文件
+1. yarn add picture_edit
+2. import * as PED from 'picture_edit'
+3. new PED.drawing(url, options)
+4. 参考: https://github.com/lijibing01/picture_edit/blob/master/index.html
 
 # 参数说明
 | 参数名称 | 默认值 | 类型 | 说明 |

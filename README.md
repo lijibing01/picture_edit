@@ -1,10 +1,16 @@
 # Introduction
 A mobile image editor written with native js and canvas
 
-# Usage
-1. Refer to index.html to import the file
+# Source code
+https://github.com/lijibing01/picture_edit
 
-# Parameter Description
+# Usage
+1. yarn add picture_edit
+2. import * as PED from 'picture_edit'
+3. new PED.drawing(url, options)
+4. refer to https://github.com/lijibing01/picture_edit/blob/master/index.html
+
+# Options
 | Parameter Name | Default Value | Type | Description |
 |---------|-------|------|------|
 | spaceLeft | 30 | number | Initialize the left and right spacing of the image |

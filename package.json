@@ -1,6 +1,6 @@
 {
   "name": "picture_edit",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "main": "dist/picture-edit.js",
   "scripts": {
     "serve": "webpack serve --mode development --open",

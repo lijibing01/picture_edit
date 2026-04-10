@@ -8,45 +8,56 @@
   flex-direction: column;
   font-size: 16px;
   font-family: Arial;
+  touch-action: none;
 
   .body-content {
     flex: 1;
-    background-color: #fff;
+    background-color: #1a1a1a;
     overflow: auto;
     will-change: transform;
+    -webkit-overflow-scrolling: touch;
   }
 
   .cancel-btn {
     position: fixed;
-    left: 15px;
-    top: 15px;
-    padding: 5px 13px;
-    background-color: white;
-    color: black;
+    left: 12px;
+    top: 12px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.45);
     z-index: 2;
-    border-radius: 3px;
+    border-radius: 50%;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background-color 0.2s;
+
+    &:active {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
   }
 
   .save-btn {
     position: fixed;
-    right: 15px;
-    top: 15px;
-    padding: 5px 13px;
-    background-color: white;
-    color: white;
+    right: 12px;
+    top: 12px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(18, 150, 219, 0.85);
     z-index: 2;
-    border-radius: 3px;
-  }
+    border-radius: 50%;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background-color 0.2s;
 
-  .cancel-test {
-    position: fixed;
-    right: 125px;
-    top: 15px;
-    padding: 5px 13px;
-    background-color: #67c23a;
-    color: white;
-    z-index: 2;
-    border-radius: 3px;
+    &:active {
+      background-color: rgba(18, 150, 219, 1);
+    }
   }
 
   .canvas-box {
@@ -56,25 +67,38 @@
     align-items: center;
     overflow: hidden;
   }
+
   .footer-content {
-    background-color: #000;
-    height: 6em;
+    background-color: #111;
+    height: 5em;
     display: flex;
     text-align: center;
     color: #fff;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 8px;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .operate-item {
-    display: block;
-    margin-top: 25px;
-    width: 10px;
-    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    transition: background-color 0.15s;
+
+    &:active {
+      background-color: rgba(255, 255, 255, 0.12);
+    }
   }
 
   .operate-img {
-    width: 1.3em;
-    height: 1.3em;
+    width: 22px;
+    height: 22px;
+    pointer-events: none;
   }
 
   .text-content {
@@ -83,22 +107,30 @@
     overflow: hidden;
     z-index: 2;
     display: none;
-    background-color: white;
-    opacity: 0.93;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 
     .text-input {
       min-height: 15%;
-      border-radius: 5px;
-      border: 2px solid rgb(99, 236, 161);
+      border-radius: 8px;
+      border: 2px solid rgba(18, 150, 219, 0.7);
       outline: none;
-      width: 96%;
+      width: 92%;
       box-sizing: border-box;
       position: absolute;
       top: 8%;
-      left: 2%;
-      right: 2%;
+      left: 4%;
+      right: 4%;
       z-index: 2;
-      padding: 3px 5px;
+      padding: 8px 12px;
+      font-size: 16px;
+      color: #fff;
+      background-color: rgba(255, 255, 255, 0.1);
+
+      &:focus {
+        border-color: rgba(18, 150, 219, 1);
+      }
     }
   }
 
@@ -125,7 +157,7 @@
 
   .operate-rotate {
     position: absolute;
-    width: 20px;
+    width: 22px;
     bottom: -30px;
     left: 50%;
     transform: translateX(-50%);
@@ -133,12 +165,13 @@
 
   .operate-scale {
     position: absolute;
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     background-color: #fff;
-    right: -8px;
-    top: -8px;
+    right: -9px;
+    top: -9px;
     border-radius: 50%;
     box-sizing: border-box;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   }
 }

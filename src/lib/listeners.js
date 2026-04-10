@@ -1,6 +1,5 @@
 import { G } from './global'
 import * as U from './utils'
-import svgRotate from '../assets/rotate.svg'
 import svgPainting from '../assets/painting.svg'
 import svgPaintingCancel from '../assets/painting_cancel.svg'
 
@@ -106,16 +105,14 @@ function initListener() {
     }
   });
 
+  let _rafId = 0
+
   function moveEvent(e) {
     const currentDistance = U.getDistance(e.touches)
-    const scaleChange = currentDistance / _initDistance // 计算缩放变化
+    const scaleChange = currentDistance / _initDistance
     _tempScale = scaleChange
     G.canvas.style.transform = `scale(${scaleChange})`
   }
-
-  const throttledScroll = U.throttle((e) => {
-    moveEvent(e)
-  }, 16); // 60hz刷新率为准，16.67毫秒刷新一次
 
   G.canvas.addEventListener('touchmove', (e) => {
     if (e.touches.length === 1) {
@@ -133,7 +130,8 @@ function initListener() {
       }
     } else if (e.touches.length === 2 && G.operateType !== 1 && G.touchType === 'scaleCanvas') {
       U.simpleEvent(e)
-      throttledScroll(e)
+      cancelAnimationFrame(_rafId)
+      _rafId = requestAnimationFrame(() => moveEvent(e))
     }
   });
 
@@ -240,25 +238,40 @@ function handleCreateOperate(target) {
   handleRemoveOperate()
   const id = target.dataset.pedTextId
   _operateInfo = G.textsInfo[id]
-  const element = `<div style="position: absolute;
+  const color = G.initOptions.textOperateColor
+  const element = `<div class="ped-operate-border" style="position: absolute;
           width: ${_operateInfo.width + G.initOptions.operatePaddingLeft * 2}px;
           height: ${_operateInfo.height + G.initOptions.operatePaddingTop * 2}px;
           left: ${_operateInfo.x - G.initOptions.operatePaddingLeft}px;
           top: ${_operateInfo.y - G.initOptions.operatePaddingTop}px;
-          border: 2px solid ${G.initOptions.textOperateColor};
+          border: 1.5px dashed ${color};
           box-sizing: border-box;
-          border-radius: 2px;
+          border-radius: 4px;
           background: transparent;
           transform: rotate(${_operateInfo.rotate}deg);">
         </div>`
   _operateBorderDom = U.stringToNode(element)
-  const rotateElement = `<img src="${svgRotate}" class="operate-rotate" />`
+
+  const rotateElement = `<div class="operate-rotate" style="position:absolute;bottom:-36px;left:50%;transform:translateX(-50%);
+    width:28px;height:28px;border-radius:50%;background:${color};
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,0.25);cursor:pointer;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;pointer-events:none;">
+      <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+    </svg></div>`
   const _rotateDom = U.stringToNode(rotateElement)
   _rotateDom.addEventListener("touchstart", addTextRotate)
   _rotateDom.addEventListener("touchmove", moveTextRotate)
   _rotateDom.addEventListener("touchend", endTextRotate)
 
-  const scaleElement = `<div class="operate-scale"></div>`
+  const scaleElement = `<div class="operate-scale" style="position:absolute;right:-14px;top:-14px;
+    width:28px;height:28px;border-radius:50%;background:#fff;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,0.25);cursor:pointer;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;pointer-events:none;">
+      <polyline points="15 3 21 3 21 9"/><line x1="14" y1="10" x2="21" y2="3"/>
+      <polyline points="9 21 3 21 3 15"/><line x1="10" y1="14" x2="3" y2="21"/>
+    </svg></div>`
   const _scaleDom = U.stringToNode(scaleElement)
   _scaleDom.addEventListener("touchstart", addTextScale)
   _scaleDom.addEventListener("touchmove", moveTextScale)
@@ -409,7 +422,7 @@ function moveTextScale(e) {
 
 function endTextScale(e) {
   U.simpleEvent(e)
-  if (G.touchType = 'addScaleLog') {
+  if (G.touchType === 'addScaleLog') {
     G.touchType = ''
     // 缩放文本，需要更新宽高等信息了
     _operateInfo.width = _operateInfo.dom.offsetWidth
